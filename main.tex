@@ -1,0 +1,80 @@
+\documentclass[a4paper]{amsart}
+\usepackage{mathtools}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage[style=alphabetic,useprefix=true]{biblatex}
+
+\author{Ingo Blechschmidt}
+\author{Matthias Hutzler}
+\author{Lukas Stoll}
+\title{???}
+\date{\today}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary*}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem*{examples*}{Examples}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+
+\addbibresource{Streicher2018.bib}
+\addbibresource{Maietti2010.bib}
+
+\begin{document}
+\maketitle
+
+\section{Fibered categories}
+
+\begin{definition}
+  Let $P:ℰ → ℬ$ be a functor.
+  \begin{enumerate}
+    \item A morphism in $ℰ$ is \emph{vertical} if its image under $P$ is an identity morphism.
+      \marginpar{Automorphism?}
+    \item A morphism $φ$ in $ℰ$ is \emph{cartesian} if every morphism $ϑ$ with the same codomain factors through $φ$, provided this holds for their images under $P$.
+      Moreover, the factorization through $φ$ is required to be unique.
+      \marginpar{Diagram!}
+    \item A \emph{cartesian lift through $P$} of a morphism $u$ in $ℬ$ is a cartesian morphism in $ℰ$ which is mapped to $u$ by $P$.
+    \item The functor $P$ is a \emph{fibration} if every morphism $u$ in $ℬ$ admits a cartesian lift through $P$.
+      In this case, we also say that $ℰ$ is \emph{fibered over $ℬ$ by $P$}.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Let $P:ℰ → ℬ$, $Q:ℱ → ℬ$ be fibered categories.
+  \begin{enumerate}
+    \item A \emph{fibered functor} ...
+    \item A \emph{vertical natural transformation} ...
+  \end{enumerate}
+\end{definition}
+
+\begin{examples}
+  \hfill
+  \begin{enumerate}
+    \item \emph{codomain fibration}
+    \item \emph{Grothendieck contruction}
+  \end{enumerate}
+\end{examples}
+
+\section{Arithmetic Universes}
+
+\begin{definition}
+  \emph{arithmetic universe}
+\end{definition}
+
+\nocite{*}
+\printbibliography
+\end{document}
