@@ -1,2 +1,3 @@
 Build with
-    latexmk -lualatex main.tex
+```
+latexmk -lualatex main.tex
