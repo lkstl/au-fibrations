@@ -11,6 +11,16 @@
 \usepackage{unicode-math}
 \usepackage[protrusion=true,expansion=true]{microtype}
 \usepackage[style=alphabetic,useprefix=true]{biblatex}
+\RequirePackage{tikz}
+\usetikzlibrary{cd}
+\usetikzlibrary{calc}
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -79,13 +89,28 @@
   Let $P:ℰ → ℬ$ be a functor.
   \begin{enumerate}
     \item A morphism in $ℰ$ is \emph{vertical} if its image under $P$ is an identity morphism.
-      \marginpar{Automorphism?}
     \item A morphism $φ$ in $ℰ$ is \emph{cartesian} if every morphism $ϑ$ with the same codomain factors through $φ$, provided this holds for their images under $P$.
       Moreover, the factorization through $φ$ is required to be unique.
-      \marginpar{Diagram!}
-    \item A \emph{cartesian lift through $P$} of a morphism $u$ in $ℬ$ is a cartesian morphism in $ℰ$ which is mapped to $u$ by $P$.
-    \item The functor $P$ is a \emph{fibration} if every morphism $u$ in $ℬ$ admits a cartesian lift through $P$.
-      In this case, we also say that $ℰ$ is \emph{fibered over $ℬ$ by $P$}.
+      % https://q.uiver.app/?q=WzAsNixbMCwwLCJcXGJ1bGxldCJdLFsxLDEsIlxcYnVsbGV0Il0sWzMsMSwiXFxidWxsZXQiXSxbMSwzLCJcXGJ1bGxldCJdLFszLDMsIlxcYnVsbGV0Il0sWzAsMiwiXFxidWxsZXQiXSxbMCwyLCLiiIAiLDAseyJjdXJ2ZSI6LTF9XSxbMCwxLCLiiIMhIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDQsIiIsMSx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCw1LCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsM10sWzMsNF0sWzUsNCwiIiwxLHsiY3VydmUiOi0xfV0sWzEsMiwiz4YiXV0=
+      \[\begin{tikzcd}
+        \bullet \\
+        & \bullet && \bullet \\
+        \bullet \\
+        & \bullet && \bullet
+        \arrow["{∀ϑ}", curve={height=-6pt}, from=1-1, to=2-4]
+        \arrow["{∃!}", dashed, from=1-1, to=2-2]
+        \arrow[no head, from=2-2, to=4-2]
+        \arrow[no head, from=2-4, to=4-4]
+        \arrow[no head, from=1-1, to=3-1]
+        \arrow[from=3-1, to=4-2]
+        \arrow[from=4-2, to=4-4]
+        \arrow[curve={height=-6pt}, from=3-1, to=4-4]
+        \arrow["{φ}", from=2-2, to=2-4]
+      \end{tikzcd}\]
+    \item Let $u:b' → b$ be a morphism in $ℬ$ and $e ∈ ℰ_b$ an object in the fiber of $P$ over $b$.
+      A \emph{weak cartesian lift of $u$ at $e$ through $P$} is a cartesian morphism $φ:e' → e$ together with an isomorphism $h:φ(e') ≅ b'$.
+    \item The functor $P$ is a \emph{Street fibration} if every morphism $u:b' → b$ in $ℬ$ admits a weak cartesian lift through $P$ at every $e ∈ ℰ_b$.
+      In this case, we also say that $ℰ$ is \emph{weakly fibered over $ℬ$ by $P$}.
   \end{enumerate}
 \end{definition}
 
